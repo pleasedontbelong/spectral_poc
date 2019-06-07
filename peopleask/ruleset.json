@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "snake_case_check": {
+      "summary": "Checks for use of snake case instead of camel case.",
+      "given": "$..name",
+      "severity": 2,
+      "then": {
+        "function": "snakeCase"
+      }
+    }
+  }
+}
