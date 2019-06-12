@@ -3,7 +3,7 @@
 const { Spectral } = require('@stoplight/spectral');
 const { readParsable } = require('@stoplight/spectral/fs/reader');
 const { readRulesFromRulesets } = require('@stoplight/spectral/rulesets/reader');
-const { snakeCaseFunction } = require('./peopleask/functions/snakeCase/index.js');
+const { snakeCaseFunction } = require('./peopledoc/functions/snakeCase/index.js');
 const { oas2Functions, rules } = require('@stoplight/spectral/rulesets/oas2');
 const { stylish } = require ('@stoplight/spectral/formatters');
 const commander = require('commander');
@@ -23,7 +23,7 @@ const spectral = new Spectral();
 // load swagger functions
 spectral.addFunctions(oas2Functions());
 
-// Load peopleask functions
+// Load peopledoc functions
 spectral.addFunctions({
   snakeCase: snakeCaseFunction,
 });
@@ -31,8 +31,8 @@ spectral.addFunctions({
 // load swagger rules
 rules().then((swaggerRules) => {
   spectral.addRules(swaggerRules);
-  // load peopleask rules
-  readRulesFromRulesets('peopleask/ruleset.json').then((rules) => {
+  // load peopledoc rules
+  readRulesFromRulesets('peopledoc/ruleset.json').then((rules) => {
     spectral.addRules(rules)
     // run spectral
     readParsable(commander.specification, 'utf8').then((spec) => {
